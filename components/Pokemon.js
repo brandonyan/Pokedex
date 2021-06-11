@@ -1,8 +1,23 @@
 import axios from "axios";
-import React,  { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 
-const Pokedex = ({verPokemon}) => {
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
+
+const Pokedex = ({ verPokemon }) => {
+  const classes = useStyles();
   const [pokemonData, setPokemonData] = useState({});
 
   useEffect(() => {
@@ -29,18 +44,48 @@ const Pokedex = ({verPokemon}) => {
     <>
       {pokemonData ? (
         <div>
-          {Object.keys(pokemonData).map(
-            (pokemonId) =>(
-              <article className="pokemon" key={pokemonData[pokemonId].name}>
-                <img src={pokemonData[pokemonId].sprite} alt={pokemonData[pokemonId].name} />
-                <h3>{pokemonData[pokemonId].name}</h3>
-                <div>
-                  <button onClick={() => verPokemon(pokemonData[pokemonId].id)}>View</button>
-                </div>
-              </article>            
-          ))}
+          <TableContainer component={Paper}>
+            <Table
+              className={classes.table}
+              size="small"
+              aria-label="a dense table"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell>Id</TableCell>
+                  <TableCell>Nombre</TableCell>
+                  <TableCell align="right">Imagen</TableCell>
+                  <TableCell align="right"></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {Object.keys(pokemonData).map((pokemonId) => (
+                  <TableRow key={pokemonData[pokemonId].name}>
+                    <TableCell component="th" scope="row">
+                      {pokemonData[pokemonId].id}
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {pokemonData[pokemonId].name}
+                    </TableCell>
+                    <TableCell align="right">
+                      <img
+                        src={pokemonData[pokemonId].sprite}
+                        alt={pokemonData[pokemonId].name}
+                      />
+                    </TableCell>
+                    <TableCell align="right">
+                      <button
+                        onClick={() => verPokemon(pokemonData[pokemonId].id)}
+                      >
+                        View
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
-        
       ) : (
         <h1>cargando</h1>
       )}
@@ -52,12 +97,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  verPokemon(id){
+  verPokemon(id) {
     dispatch({
       type: "VER_POKEMON",
-      id
-    })
-  }
+      id,
+    });
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pokedex);

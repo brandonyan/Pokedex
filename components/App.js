@@ -5,7 +5,7 @@ import store from '../redux/store'
 const App = ({children}) => (
     <Provider store={store}>
     <main>
-        <Encabezado />
+        <Encabezado />        
         {children}
         
     </main>
