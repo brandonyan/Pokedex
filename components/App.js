@@ -7,6 +7,7 @@ const App = ({children}) => (
     <main>
         <Encabezado />
         {children}
+        
     </main>
     </Provider>
 )

@@ -2,10 +2,18 @@ import {createStore} from 'redux';
 
 const inicialState = {
     pokemones: [],
-    enVIsta: []
+    vista: 1
 }
 
-const reducerVista = (state = inicialState, action) => {
+const reducerVista = (state = inicialState, action) => {    
+    
+    console.log(action);
+    if (action.type === "VER_POKEMON"){
+        return{
+            ...state,
+            vista: action.id
+        }
+    }
     return state
 }
 
