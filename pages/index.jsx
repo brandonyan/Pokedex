@@ -1,11 +1,8 @@
-import React from 'react';
+import App from '../components/App'
 
-class App extends React.Component {
-    render() {
-        return (
-            <h1> Hello World! </h1>
-        );
-    }
-}
-
-export default App
+const Index = () => (
+<App>
+    <h1>Hello World</h1>
+</App>
+)
+export default Index;

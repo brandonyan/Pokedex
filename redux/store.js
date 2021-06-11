@@ -1,6 +1,12 @@
 import {createStore} from 'redux';
-import rootReducer from './reducers/rootReducer';
 
-const store = createStore(rootReducer);
+const inicialState = {
+    pokemones: [],
+    enVIsta: []
+}
 
-export default store;
+const reducerVista = (state = inicialState, action) => {
+    return state
+}
+
+export default createStore(reducerVista);
