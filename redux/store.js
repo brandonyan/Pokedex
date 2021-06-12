@@ -1,7 +1,6 @@
 import {createStore} from 'redux';
 
 const inicialState = {
-    pokemones: [],
     vista: 1
 }
 

@@ -1,19 +1,24 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
 import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
+  appBar: {
+    centerTitle: true,
+    alignItems: "center",
+  },
   toolbar: {
     alignItems: "flex-start",
     paddingBottom: theme.spacing(2),
+    paddingTop: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
     alignSelf: "flex-end",
+    centerTitle: true,
   },
 }));
 
@@ -37,20 +42,20 @@ const Encabezado = (props) => {
   const classes = useStyles();
   const displayDesktop = () => {
     return (
-      <Toolbar className={classes.toolbar} >
-        <Typography className={classes.title} variant="h5" noWrap>
-            Pokedex
+      <Toolbar className={classes.toolbar}>
+        <Typography className={classes.title} variant="h3" noWrap>
+          Pokedex
         </Typography>
       </Toolbar>
     );
   };
   return (
     <React.Fragment>
-      <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar>{displayDesktop()}</AppBar>
+        <AppBar className={classes.appBar}>{displayDesktop()}</AppBar>
       </HideOnScroll>
       <Toolbar />
+      <Toolbar/>
     </React.Fragment>
   );
 };

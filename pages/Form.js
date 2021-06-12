@@ -39,11 +39,11 @@ class Form extends React.Component{
 
     render() {
         return (
-        <div className="card text-center">
-          <div className="card-header">
+        <div >
+          <div >
             Pokedex
           </div>
-          <div className="card-body">
+          <div>
         <form onSubmit={this.handleSubmit}>    
             <label>Ingrese el pokemon</label><br/>
             <input 
@@ -52,7 +52,7 @@ class Form extends React.Component{
                 value={this.state.name}
                 onChange={this.handleName}
             /><br/><br/>
-            <button type="submit" className="btn btn-primary">submit</button>
+            <button type="submit" >submit</button>
         </form>
         <img src={this.state.img}/>
           </div>
